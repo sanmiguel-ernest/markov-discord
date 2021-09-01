@@ -153,6 +153,8 @@ function loadConfig(): void {
   } catch (e) {
     console.warn('Failed to read config.json.');
     token = process.env.TOKEN || token;
+    PREFIX = process.env.PREFIX || '!mark';
+    GAME = process.env.GAME  || '!mark help';
   }
   try {
     client.login(token);
