@@ -206,6 +206,9 @@ function validateMessage(message: Discord.Message): string | null {
       command = 'tts';
     }
   }
+  if (messageText.split(' ').some((word: string) => word === PREFIX)) {
+    command = "respond";
+  }
   return command;
 }
 
