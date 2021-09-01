@@ -191,7 +191,7 @@ function validateMessage(message: Discord.Message): string | null {
   if (thisPrefix === PREFIX) {
     const split = messageText.split(' ');
     if (split[0] === PREFIX && split.length === 1) {
-      command = 'respond';
+      return 'respond';
     } else if (split[1] === 'train') {
       command = 'train';
     } else if (split[1] === 'help') {
