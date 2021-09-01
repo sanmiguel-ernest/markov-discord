@@ -143,8 +143,8 @@ function loadConfig(): void {
   let token = 'missing';
   try {
     const cfg: MarkbotConfig = JSON.parse(fs.readFileSync('./config/config.json', 'utf8'));
-    PREFIX = cfg.prefix || '!mark';
-    GAME = cfg.game || '!mark help';
+    PREFIX = cfg.prefix || process.env.PREFIX || '!mark';
+    GAME = cfg.game || process.env.GAME  || '!mark help';
     token = cfg.token || process.env.TOKEN || token;
     STATE_SIZE = cfg.stateSize || STATE_SIZE;
     MIN_SCORE = cfg.minScore || MIN_SCORE;
