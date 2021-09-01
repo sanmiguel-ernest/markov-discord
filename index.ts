@@ -188,10 +188,15 @@ function validateMessage(message: Discord.Message): string | null {
   const messageText = message.content.toLowerCase();
   let command = null;
   const thisPrefix = messageText.substring(0, PREFIX.length);
+
+  if (messageText.split(' ').some((word: string) => word === PREFIX)) {
+    command = "respond";
+  }
+
   if (thisPrefix === PREFIX) {
     const split = messageText.split(' ');
     if (split[0] === PREFIX && split.length === 1) {
-      return 'respond';
+      command = 'respond';
     } else if (split[1] === 'train') {
       command = 'train';
     } else if (split[1] === 'help') {
@@ -205,9 +210,6 @@ function validateMessage(message: Discord.Message): string | null {
     } else if (split[1] === 'tts') {
       command = 'tts';
     }
-  }
-  if (messageText.split(' ').some((word: string) => word === PREFIX)) {
-    command = "respond";
   }
   return command;
 }
